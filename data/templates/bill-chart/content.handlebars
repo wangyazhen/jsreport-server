@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset="utf-8">
+       <style>
+        body{position: relative;}
+            .page-break	{ display: block; page-break-before: always; }
+            
+            
+            .cov-top-title {font-size: 90px;}
+            .cover h1 {margin-top: 260px; text-align: center;font-size: 160px;}
+            .footer { float: right; width: 600px;}
+            .footer img {width: 100%;}
+            .cov-body {
+                height: 600px;
+            }
+            .cov-body .txt {
+              margin-top: 80px;
+              font-size: 80px;
+              float: right;
+              margin-right: 5%;
+            }
+            .cmp-name{border-bottom: 2px solid #000;}
+            .label-line { border: 2px solid red; width: 30px; height: 0; display: inline-block; margin-right: 5px; }
+		    .label-line.dashed{ border-style: dashed }
+		    /* 隐藏方块 */
+		    .legendColorBox{display: none;}
+		    
+		    .ct-box { margin-top: 0px; }
+		    .ct-box.tow-col { display: inline-block; width: 49%; }
+		    .ct-box.three-col { display: inline-block; width: 33%; }
+		    
+		    /* 每个页面需要的   */
+		    .page-container {
+		        width:1900px;
+		    }
+		  
+		  .tickLabel { font-size: 28px }
+        </style>
+    </head>
+    <body>
+
+
+ <div class="cover cover-rotate">
+    <div class="cov-top-title"><span class="cmp-name">{{name}}</span> 御中</div>
+    <div class="cov-body">
+        <h1>国際輸送月例レポート</h1>
+        <div class="txt">{{date}}</div>
+    </div>
+    
+
+    <div class="footer">
+      <img src="http://erp.tx-logi.com/assets/res/icons/TXL%20logo.png"/> 
+    </div>  
+  </div>
+
+
+<p class="page-break"></p>
+
+<script src="http://sitetest16.tx-logi.com/wyzscripts/jsreport_script/jquery-1.11.0.min.js"></script>
+<script src="http://sitetest16.tx-logi.com/wyzscripts/jsreport_script/jquery.flot.min.js"></script>
+<script src="http://sitetest16.tx-logi.com/wyzscripts/jsreport_script/jquery.flot.pie.min.js"></script>
+<script src="http://sitetest16.tx-logi.com/wyzscripts/jsreport_script/jquery.flot.categories.min.js"></script>
+<script src="http://sitetest16.tx-logi.com/wyzscripts/jsreport_script/jquery-flot-dashes.js"></script>
+
+<div class="ct-box">
+    <h1 class="h-cen">BL</h1>
+    <div id="chart" style="width:1900px;height:1200px;"></div>
+</div>
+
+<!-- 第三页 饼图  pdf -->
+<p class="page-break"></p>
+
+<h1 class="h-cen">FCL情况下BL票数折线图</h1>
+<div id="fcl_chart1" style="width:1900px;height:560px;margin-top: 20px;"></div>
+
+<h1 class="h-cen">FCL情况下TEU数折线图</h1>
+<div id="fcl_chart2" style="width:1900px;height:560px;margin-top: 20px;"></div>
+
+
+<!-- 第四页 饼图  pdf -->
+<p class="page-break"></p>
+<h1 class="h-cen">FCL情况下根据POL（起运港）统计BL票数饼图</h1>
+<div class="ct-box three-col">
+    <h1 class="h-cen">2018年</h1>
+    <div id="fcl_pol_bl_chart1" style="width:633px;height:500px;"></div>
+</div>
+<div class="ct-box three-col">
+    <h1 class="h-cen">2017年</h1>
+    <div id="fcl_pol_bl_chart2" style="width:633px;height:500px;"></div>
+</div>
+<div class="ct-box three-col">
+    <h1 class="h-cen">2016年</h1>
+    <div id="fcl_pol_bl_chart3" style="width:633px;height:500px;"></div>
+</div>
+
+<h1 class="h-cen">FCL情况下根据POL（起运港）统计TEU票数饼图</h1>
+<div class="ct-box three-col">
+    <h1 class="h-cen">2018年</h1>
+    <div id="fcl_pol_teu_chart1" style="width:633px;height:500px;"></div>
+</div>
+<div class="ct-box three-col">
+    <h1 class="h-cen">2017年</h1>
+    <div id="fcl_pol_teu_chart2" style="width:633px;height:500px;"></div>
+</div>
+<div class="ct-box three-col">
+    <h1 class="h-cen">2016年</h1>
+    <div id="fcl_pol_teu_chart3" style="width:633px;height:500px;"></div>
+</div>
+
+<!-- 第五页 饼图 pdf -->
+<p class="page-break"></p>
+
+<h1 class="h-cen">FCL情况下根据POD（目的港）统计BL票数饼图</h1>
+<div class="ct-box three-col">
+    <h1 class="h-cen">2018年</h1>
+    <div id="fcl_pod_bl_chart1" style="width:633px;height:500px;"></div>
+</div>
+<div class="ct-box three-col">
+    <h1 class="h-cen">2017年</h1>
+    <div id="fcl_pod_bl_chart2" style="width:633px;height:500px;"></div>
+</div>
+<div class="ct-box three-col">
+    <h1 class="h-cen">2016年</h1>
+    <div id="fcl_pod_bl_chart3" style="width:633px;height:500px;"></div>
+</div>
+
+<h1 class="h-cen">FCL情况下根据POD（目的港）统计TEU数饼图</h1>
+<div class="ct-box three-col">
+    <h1 class="h-cen">2018年</h1>
+    <div id="fcl_pod_teu_chart1" style="width:633px;height:500px;"></div>
+</div>
+<div class="ct-box three-col">
+    <h1 class="h-cen">2017年</h1>
+    <div id="fcl_pod_teu_chart2" style="width:633px;height:500px;"></div>
+</div>
+<div class="ct-box three-col">
+    <h1 class="h-cen">2016年</h1>
+    <div id="fcl_pod_teu_chart3" style="width:633px;height:500px;"></div>
+</div>
+
+
+<script>
+  // 获取数组
+  var data = {{#toJSON this}}{{/toJSON}}
+  var series = data.series
+
+$(function () {   
+   // chart tu图
+   
+   // "ne" or "nw" or "se" or "sw"
+   var charts = ['fcl_chart1', 'fcl_chart2', 'chart']
+   var options = {
+        grid: {
+           borderWidth: {top: 0, right: 0, bottom: 1, left: 1}
+        },
+       lines: { lineWidth: 3 },
+       xaxis: {
+			mode: "categories",
+			tickLength: 0
+		},
+		yaxis: { min:0, } ,
+		legend: {
+            position: "ne",
+            labelFormatter: function(label, series) {
+			    // series is the series object for the label
+			    // console.log('labelFormatter data:', label, series);
+			    var isLastYear = label.indexOf('2016') > -1;
+			    var cls = isLastYear ? 'label-line dashed' : 'label-line';
+			    var styleTxt = 'border-color: '+ series.color;
+			    var labelBox = '<span class="'+ cls +'" style="'+ styleTxt +'"></span>' + label
+			    var content = '<div style="font-size: 25px">'+ labelBox +'</div>'
+			    return content
+			}
+        }
+   };
+   charts.forEach(function(c) {
+     $.plot('#'+ c, series, options)
+   })
+   
+   // 饼图饼图部分
+   var pieDatas = [  
+        { label: "苹果",  data: 10},  
+        { label: "香蕉",  data: 30},  
+        { label: "西瓜",  data: 90},  
+        { label: "葡萄",  data: 70},  
+        { label: "柑橘",  data: 80},  
+        { label: "菠萝",  data: 110}  
+    ];
+    var pieOpts = {  
+        series: {
+          pie: {
+            show: true,
+              radius: 1, //半径  
+              label: {
+              show: true,
+                radius: 2/3,
+                formatter: function(label, series){
+                return '<div style="font-size:30px;text-align:center;padding:2px;color:white;">'+label+'<br/>'+Math.round(series.percent)+'%</div>';
+              },
+              threshold: 0.03  //这个值小于0.03，也就是3%时，label就会隐藏  
+            }
+          }
+        },
+        legend: {
+          show: false
+        }
+    };
+    ['fcl_pol_bl_chart1', 'fcl_pol_bl_chart2', 'fcl_pol_bl_chart3',
+    'fcl_pol_teu_chart1', 'fcl_pol_teu_chart2', 'fcl_pol_teu_chart3',
+    'fcl_pod_bl_chart1', 'fcl_pod_bl_chart2', 'fcl_pod_bl_chart3',
+    'fcl_pod_teu_chart1', 'fcl_pod_teu_chart2', 'fcl_pod_teu_chart3'
+    ].forEach(function(c) {
+     $.plot('#'+ c, pieDatas, pieOpts)
+   })
+   
+});
+</script>
+
+</body>
+</html>
